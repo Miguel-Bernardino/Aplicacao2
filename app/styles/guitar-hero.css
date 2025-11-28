@@ -1,0 +1,257 @@
+.guitar-hero-container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #0a0a0a, #1a1a2e);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #00ffff;
+}
+
+.header h1 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-size: 2.5em;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.score {
+  color: #f39c12;
+}
+
+.combo {
+  color: #e74c3c;
+}
+
+.bluetooth-status {
+  color: #95a5a6;
+}
+
+.bluetooth-status.connected {
+  color: #2ecc71;
+}
+
+.controls {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.game-mode-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.game-mode-selection h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.song-list h4 {
+  margin: 5px 0;
+  color: #95a5a6;
+  font-size: 1em;
+}
+
+.game-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.mode-display {
+  padding: 10px 20px;
+  background: rgba(52, 152, 219, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-bluetooth,
+.btn-start,
+.btn-stop,
+.btn-song {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 400px;
+}
+
+.btn-bluetooth {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-bluetooth:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+}
+
+.btn-start:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+}
+
+.btn-stop {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+.btn-stop:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+}
+
+.btn-song {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  color: white;
+}
+
+.btn-song:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+}
+
+.game-area {
+  flex: 1;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.lanes {
+  display: flex;
+  height: 100%;
+  gap: 2px;
+  position: relative;
+}
+
+.lane {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.1s;
+}
+
+.lane.pressed {
+  background: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.02);
+}
+
+.lane-number {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2em;
+  font-weight: bold;
+  text-shadow: 0 0 10px black;
+  z-index: 10;
+}
+
+.hit-zone {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  border: 3px dashed rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.notes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.note {
+  position: absolute;
+  width: calc(100% / 6 - 4px);
+  height: 60px;
+  border-radius: 10px;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transition: transform 0.1s;
+}
+
+.instructions {
+  padding: 10px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.instructions p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #95a5a6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8em;
+  }
+
+  .stats {
+    font-size: 1em;
+  }
+
+  .btn-bluetooth,
+  .btn-start,
+  .btn-stop {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .lane-number {
+    font-size: 1.5em;
+  }
+}

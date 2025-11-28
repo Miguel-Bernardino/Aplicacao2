@@ -1,87 +1,60 @@
-# Welcome to React Router!
+# Aplicacao2
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Projeto React (Vite + React Router) com integração Web Bluetooth e jogo estilo Guitar Hero.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Scripts
 
-## Features
+- `npm install`: instala dependências
+- `npm run dev`: inicia o servidor de desenvolvimento
+- `npm run build`: gera build de produção
+- `npm run preview`: serve a build gerada
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Estrutura
 
-## Getting Started
+- `app/` componentes e rotas
+- `public/` assets estáticos (ex.: `public/audio`)
+- `vite.config.ts` configuração do Vite
 
-### Installation
+## Backend API e Variáveis de Ambiente
 
-Install the dependencies:
+O jogo envia um POST com o resultado ao fim da música. A URL da API pode ser configurada via variável de ambiente `VITE_API_URL`.
 
-```bash
-npm install
-```
+### Como configurar
 
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+1. Crie um arquivo `.env` na raiz do projeto com:
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+VITE_API_URL=https://seu-backend.exemplo.com
 ```
 
-## Styling
+2. Se não configurar `VITE_API_URL`, o app usa o caminho relativo `/api/scores`.
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+3. Para desenvolvimento, você pode rodar seu backend local (por exemplo `http://localhost:3000`) e usar o proxy do Vite para evitar CORS:
 
----
+```
+VITE_PROXY_TARGET=http://localhost:3000
+```
 
-Built with ❤️ using React Router.
+Com isso, requisições a `/api/*` durante `npm run dev` serão encaminhadas para o backend.
+
+Após alterar `.env`, reinicie o servidor de desenvolvimento.
+
+### Payload enviado
+
+`POST {API_BASE}/scores` com corpo JSON:
+
+```
+{
+	"userIdentifier": string,
+	"score": number,
+	"music": string
+}
+```
+
+## Áudio
+
+Coloque seus arquivos `.mp3` em `public/audio`. Exemplo de uso no código:
+
+```ts
+const SONGS = [{ audioUrl: "/audio/MinhaMusica.mp3" }];
+```
