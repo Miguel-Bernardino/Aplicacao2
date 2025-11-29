@@ -675,6 +675,7 @@ export default function GuitarHero() {
     };
 
     try {
+      console.log(import.meta.env.VITE_API_URL);
       const res = await fetch((import.meta.env.VITE_API_URL || "http://localhost:3000") + "/api/playbacks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
